@@ -1,0 +1,12 @@
+,Mean,Std. Dev.,Min,Median,Max
+Annual_Generation_kt,89.37,46.79,5.11,85.62,275.79
+Per_Capita_Generation_kg,8.66,2.87,2.43,8.39,19.89
+Population_Millions,10.36,4.16,1.56,10.6,20.93
+Tech_Sector_GDP_Billion_USD,136.87,151.88,28.98,92.16,867.95
+Tech_Workforce_Thousands,1009.29,891.63,233.5,709.2,4621.5
+Average_Device_Lifespan_Months,34.35,15.02,8.6,31.2,80.3
+Formal_Collection_Rate_Pct,26.88,13.1,4.0,23.6,68.5
+Informal_Recovery_Rate_Pct,63.93,14.48,25.0,67.8,92.0
+Heavy_Metal_Toxicity_Index,6.98,1.42,2.34,7.06,10.0
+EPR_Enforcement_Score,3.06,0.77,1.04,2.99,5.0
+Raw_Vulnerability_Score,64.4,10.29,32.66,66.38,89.71

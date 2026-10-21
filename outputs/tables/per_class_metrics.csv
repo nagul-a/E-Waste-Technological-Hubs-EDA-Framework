@@ -1,0 +1,25 @@
+Model,Class,Precision,Recall,F1-score,Support
+Random Forest,Tier-1 Controlled,1.0,0.867,0.929,60
+Random Forest,Tier-2 Emerging Risk,0.7,0.817,0.754,60
+Random Forest,Tier-3 High Vulnerability,0.652,0.717,0.683,60
+Random Forest,Tier-4 Critical Crisis,0.885,0.767,0.821,60
+Naive Bayes,Tier-1 Controlled,0.947,0.6,0.735,60
+Naive Bayes,Tier-2 Emerging Risk,0.545,0.7,0.613,60
+Naive Bayes,Tier-3 High Vulnerability,0.514,0.633,0.567,60
+Naive Bayes,Tier-4 Critical Crisis,0.745,0.633,0.685,60
+Decision Tree,Tier-1 Controlled,0.932,0.917,0.924,60
+Decision Tree,Tier-2 Emerging Risk,0.678,0.667,0.672,60
+Decision Tree,Tier-3 High Vulnerability,0.566,0.717,0.632,60
+Decision Tree,Tier-4 Critical Crisis,0.87,0.667,0.755,60
+Logistic Regression,Tier-1 Controlled,1.0,0.983,0.992,60
+Logistic Regression,Tier-2 Emerging Risk,0.932,0.917,0.924,60
+Logistic Regression,Tier-3 High Vulnerability,0.885,0.9,0.893,60
+Logistic Regression,Tier-4 Critical Crisis,0.951,0.967,0.959,60
+Support Vector Machine (SVM),Tier-1 Controlled,1.0,0.883,0.938,60
+Support Vector Machine (SVM),Tier-2 Emerging Risk,0.733,0.733,0.733,60
+Support Vector Machine (SVM),Tier-3 High Vulnerability,0.613,0.817,0.7,60
+Support Vector Machine (SVM),Tier-4 Critical Crisis,0.957,0.75,0.841,60
+XGBoost,Tier-1 Controlled,0.964,0.9,0.931,60
+XGBoost,Tier-2 Emerging Risk,0.71,0.817,0.76,60
+XGBoost,Tier-3 High Vulnerability,0.712,0.7,0.706,60
+XGBoost,Tier-4 Critical Crisis,0.911,0.85,0.879,60

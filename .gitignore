@@ -1,0 +1,46 @@
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments & Virtual Envs
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.gemini/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project Reports & Documentation Artifacts (Excluded per project policy)
+*.pdf
+*.docx
+*.doc
+E_Waste_Data_Science_Project_Report.md
+Data_Scince_Report_Final_*.pdf
+
+# Report Generation & Chapter Content Scripts
+scripts/generate_report_pdf.py
+scripts/generate_report_docx.py
+scripts/generate_markdown_report.py
+scripts/report_chapters.py
+scripts/report_sections.py
+
+# Unwanted summary dumps & extraction artifacts
+sample_pdf_summary.txt
+sample_pdf_toc_and_chapters.txt
+assets/
+
+# Temporary and Log Files
+*.log
+scratch/
