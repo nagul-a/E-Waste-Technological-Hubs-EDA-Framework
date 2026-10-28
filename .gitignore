@@ -35,6 +35,7 @@ scripts/generate_report_docx.py
 scripts/generate_markdown_report.py
 scripts/report_chapters.py
 scripts/report_sections.py
+scripts/generate_research_paper_docx.py
 
 # Unwanted summary dumps & extraction artifacts
 sample_pdf_summary.txt

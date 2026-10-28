@@ -35,6 +35,7 @@ This repository provides an empirical analytics framework utilizing multi-year o
 ├── scripts/
 │   ├── run_pipeline.py                              # End-to-end master data science pipeline
 │   └── generate_notebook.py                         # Programmatic notebook generator script
+├── app.py                                           # Interactive Streamlit web application & ML dashboard
 ├── .gitignore                                       # Git ignore specifications
 ├── requirements.txt                                 # Core Python package dependencies
 └── README.md                                        # Project documentation
@@ -86,6 +87,13 @@ Open the notebook in VS Code, JupyterLab, or Jupyter Notebook:
 ```bash
 jupyter notebook notebooks/ewaste_eda_trend_characterization.ipynb
 ```
+
+### 5. Launch the Interactive Web Dashboard
+Run the Streamlit application to explore global hubs, test live scenario predictions, and inspect model benchmarks in your browser:
+```bash
+streamlit run app.py
+```
+App will automatically open at `http://localhost:8501`.
 
 ---
 
