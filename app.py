@@ -9,180 +9,142 @@ import plotly.graph_objects as go
 from PIL import Image
 
 # ---------------------------------------------------------
-# Page Configuration & Styling
+# Page Configuration & Professional Styling
 # ---------------------------------------------------------
 st.set_page_config(
-    page_title="E-Waste Tech Hubs Analytics & ML Platform",
-    page_icon="♻️",
+    page_title="E-Waste Technological Hubs: Analysis & Classification Framework",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom Glassmorphism & High-End Dark UI CSS
+# Professional Academic & Corporate UI Styling
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
     html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     
     .stApp {
-        background: radial-gradient(circle at 15% 15%, #0d1527 0%, #060913 100%);
+        background-color: #0b0f19;
         color: #e2e8f0;
     }
 
-    /* Glassmorphism Metric Cards */
+    /* Executive Metric Cards */
     .metric-card {
-        background: rgba(18, 27, 47, 0.7);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 14px;
-        padding: 20px 22px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 8px;
+        padding: 18px 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .metric-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(56, 189, 248, 0.4);
-        box-shadow: 0 15px 35px rgba(14, 165, 233, 0.15);
+        border-color: #3b82f6;
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.12);
     }
     .metric-title {
         color: #94a3b8;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
         margin-bottom: 6px;
     }
     .metric-val {
         color: #f8fafc;
-        font-size: 1.85rem;
-        font-weight: 800;
+        font-size: 1.75rem;
+        font-weight: 700;
         letter-spacing: -0.02em;
         margin-bottom: 4px;
     }
     .metric-delta {
         font-size: 0.78rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 4px;
+        font-weight: 500;
+        color: #94a3b8;
     }
-    .delta-green { color: #10b981; }
-    .delta-cyan { color: #38bdf8; }
-    .delta-amber { color: #f59e0b; }
-    .delta-rose { color: #f43f5e; }
 
-    /* Hero Banner */
+    /* Main Section Header Banner */
     .hero-banner {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
-        border: 1px solid rgba(56, 189, 248, 0.2);
-        border-radius: 18px;
-        padding: 28px 32px;
-        margin-bottom: 25px;
-        position: relative;
-        overflow: hidden;
-    }
-    .hero-banner::after {
-        content: "";
-        position: absolute;
-        top: -60px;
-        right: -60px;
-        width: 220px;
-        height: 220px;
-        background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-left: 4px solid #3b82f6;
+        border-radius: 8px;
+        padding: 24px 28px;
+        margin-bottom: 24px;
     }
     .hero-title {
-        font-size: 2.1rem;
-        font-weight: 800;
-        background: linear-gradient(90deg, #f8fafc 0%, #38bdf8 50%, #818cf8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: #f8fafc;
         margin-bottom: 8px;
         letter-spacing: -0.02em;
     }
     .hero-subtitle {
         color: #94a3b8;
-        font-size: 1.02rem;
-        max-width: 850px;
-        line-height: 1.5;
-        margin-bottom: 15px;
+        font-size: 0.98rem;
+        max-width: 900px;
+        line-height: 1.55;
+        margin-bottom: 14px;
     }
 
-    /* Badges */
+    /* Subtle Badges */
     .badge-pill {
         display: inline-block;
-        padding: 4px 12px;
-        border-radius: 9999px;
+        padding: 3px 10px;
+        border-radius: 4px;
         font-size: 0.75rem;
         font-weight: 600;
         margin-right: 8px;
-        background: rgba(56, 189, 248, 0.12);
-        color: #38bdf8;
-        border: 1px solid rgba(56, 189, 248, 0.25);
-    }
-    .badge-pill-emerald {
-        background: rgba(16, 185, 129, 0.12);
-        color: #34d399;
-        border-color: rgba(16, 185, 129, 0.25);
-    }
-    .badge-pill-violet {
-        background: rgba(139, 92, 246, 0.12);
-        color: #a78bfa;
-        border-color: rgba(139, 92, 246, 0.25);
+        background: #1e293b;
+        color: #93c5fd;
+        border: 1px solid #334155;
     }
 
-    /* Tier Result Box */
+    /* Risk Tier Result Panels */
     .tier-box {
-        border-radius: 14px;
-        padding: 22px;
-        margin: 15px 0;
+        border-radius: 8px;
+        padding: 20px 24px;
+        margin: 16px 0;
         border: 1px solid;
     }
     .tier-1 {
-        background: rgba(16, 185, 129, 0.12);
-        border-color: rgba(16, 185, 129, 0.4);
+        background: rgba(16, 185, 129, 0.08);
+        border-color: #059669;
         color: #34d399;
     }
     .tier-2 {
-        background: rgba(56, 189, 248, 0.12);
-        border-color: rgba(56, 189, 248, 0.4);
-        color: #38bdf8;
+        background: rgba(59, 130, 246, 0.08);
+        border-color: #2563eb;
+        color: #60a5fa;
     }
     .tier-3 {
-        background: rgba(245, 158, 11, 0.12);
-        border-color: rgba(245, 158, 11, 0.4);
+        background: rgba(245, 158, 11, 0.08);
+        border-color: #d97706;
         color: #fbbf24;
     }
     .tier-4 {
-        background: rgba(244, 63, 94, 0.12);
-        border-color: rgba(244, 63, 94, 0.4);
-        color: #fb7185;
+        background: rgba(239, 68, 68, 0.08);
+        border-color: #dc2626;
+        color: #f87171;
     }
 
-    /* Custom Streamlit adjustments */
+    /* Sidebar Styling */
     div[data-testid="stSidebar"] {
-        background-color: #080d1a !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.07);
+        background-color: #0c111d !important;
+        border-right: 1px solid #1f2937;
     }
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
+    .sidebar-brand-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin: 0;
     }
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 8px;
-        padding: 8px 16px;
-        background-color: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+    .sidebar-brand-sub {
+        font-size: 0.78rem;
         color: #94a3b8;
-    }
-    .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, rgba(14, 165, 233, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%) !important;
-        border: 1px solid rgba(56, 189, 248, 0.5) !important;
-        color: #f8fafc !important;
+        margin: 0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -198,7 +160,7 @@ def load_datasets():
     df_clean = pd.read_csv(cleaned_path)
     df_feat = pd.read_csv(features_path)
     
-    # Fix encoding representation if present
+    # Standardize string representations
     df_clean['Tech_Hub'] = df_clean['Tech_Hub'].replace({'So Paulo': 'São Paulo'})
     df_feat['Tech_Hub'] = df_feat['Tech_Hub'].replace({'So Paulo': 'São Paulo'})
     
@@ -212,12 +174,12 @@ def load_models_bundle():
     bundle = joblib.load(bundle_path)
     
     model_files = {
-        'Logistic Regression (94.2%)': 'outputs/models/logistic_regression_model.joblib',
-        'XGBoost Classifier (81.7%)': 'outputs/models/xgboost_model.joblib',
-        'Support Vector Machine (79.6%)': 'outputs/models/support_vector_machine_svm_model.joblib',
-        'Random Forest (79.2%)': 'outputs/models/random_forest_model.joblib',
-        'Decision Tree (74.2%)': 'outputs/models/decision_tree_model.joblib',
-        'Gaussian Naive Bayes (64.2%)': 'outputs/models/naive_bayes_model.joblib'
+        'Logistic Regression (94.2% Accuracy)': 'outputs/models/logistic_regression_model.joblib',
+        'XGBoost Classifier (81.7% Accuracy)': 'outputs/models/xgboost_model.joblib',
+        'Support Vector Machine (79.6% Accuracy)': 'outputs/models/support_vector_machine_svm_model.joblib',
+        'Random Forest (79.2% Accuracy)': 'outputs/models/random_forest_model.joblib',
+        'Decision Tree (74.2% Accuracy)': 'outputs/models/decision_tree_model.joblib',
+        'Gaussian Naive Bayes (64.2% Accuracy)': 'outputs/models/naive_bayes_model.joblib'
     }
     
     models = {}
@@ -230,7 +192,7 @@ def load_models_bundle():
 df_clean, df_feat = load_datasets()
 bundle, models = load_models_bundle()
 
-# Hub Geographic Coordinates for Interactive Map
+# Geographic Coordinates for Technological Hubs
 HUB_COORDINATES = {
     'Bengaluru': {'lat': 12.9716, 'lon': 77.5946, 'country': 'India', 'region': 'South Asia'},
     'Hyderabad': {'lat': 17.3850, 'lon': 78.4867, 'country': 'India', 'region': 'South Asia'},
@@ -247,109 +209,103 @@ HUB_COORDINATES = {
 }
 
 # ---------------------------------------------------------
-# Sidebar Navigation & Quick Stats
+# Sidebar Navigation & Academic Metadata
 # ---------------------------------------------------------
 with st.sidebar:
     st.markdown("""
-    <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-        <div style="background: linear-gradient(135deg, #0ea5e9, #6366f1); padding:10px; border-radius:12px; font-size:1.6rem;">
-            ♻️
-        </div>
-        <div>
-            <h3 style="margin:0; font-size:1.15rem; font-weight:700; color:#f8fafc;">E-Waste Analytics</h3>
-            <p style="margin:0; font-size:0.75rem; color:#94a3b8;">EDA & ML Research Framework</p>
-        </div>
+    <div style="padding: 10px 0 16px 0;">
+        <div class="sidebar-brand-title">E-Waste Research Portal</div>
+        <div class="sidebar-brand-sub">Empirical Data Science & Policy Evaluation</div>
     </div>
     """, unsafe_allow_html=True)
     
     st.markdown("---")
     
     page = st.radio(
-        "Navigation",
+        "Navigation Menu",
         [
-            "🌐 Global Hubs & KPIs",
-            "🔍 Interactive Data Explorer",
-            "🧪 Live ML Tier Predictor",
-            "📊 Model Benchmark Lab",
-            "🖼️ Publication Figures Gallery",
-            "📑 Research Report & Exports"
+            "Executive Summary & Hub Overview",
+            "Empirical Data Explorer",
+            "Vulnerability Risk Classifier",
+            "Model Performance Benchmarks",
+            "Research Publication Figures",
+            "Documentation & Datasets"
         ],
         index=0
     )
     
     st.markdown("---")
-    st.markdown("#### 📌 Framework Metadata")
+    st.markdown("#### Study Specifications")
     st.markdown("""
-    - **Dataset Size:** 1,200 Observations
-    - **Time Horizon:** 2018 – 2025
-    - **Tech Hubs:** 12 Developing Metros
-    - **Engineered Features:** 45 Dimensions
-    - **Top ML Accuracy:** **94.2%** *(Logistic Reg.)*
+    * **Sample Population:** 1,200 Observations
+    * **Observation Window:** 2018 – 2025
+    * **Monitored Metros:** 12 Developing Tech Hubs
+    * **Engineered Indicators:** 45 Features
+    * **Top Holdout Accuracy:** **94.2%** *(Logistic Regression)*
     """)
     st.markdown("---")
-    st.caption("Developed for Academic & Policy Decision-Support in Sustainable Electronics Management.")
+    st.caption("Department of Computer Science and Engineering | Research Framework")
 
 # ---------------------------------------------------------
-# PAGE 1: GLOBAL HUBS & EXECUTIVE KPIS
+# PAGE 1: EXECUTIVE SUMMARY & HUB OVERVIEW
 # ---------------------------------------------------------
-if page == "🌐 Global Hubs & KPIs":
+if page == "Executive Summary & Hub Overview":
     st.markdown("""
     <div class="hero-banner">
-        <div class="hero-title">E-Waste Technological Hubs Analytics Platform</div>
+        <div class="hero-title">E-Waste Technological Hubs: Quantitative Analysis & Classification Framework</div>
         <div class="hero-subtitle">
-            An empirical data science and machine learning classification framework characterizing municipal electronic waste dynamics, informal recycling reliance, and environmental management risk tiers across 12 developing technological hubs.
+            An empirical investigation analyzing electronic waste generation dynamics, formal-informal recycling disparities, and environmental vulnerability risk tiers across 12 prominent technological hubs in developing economies.
         </div>
         <div>
-            <span class="badge-pill">1,200 Observations</span>
-            <span class="badge-pill badge-pill-emerald">12 Global Tech Hubs</span>
-            <span class="badge-pill badge-pill-violet">6 Supervised ML Models</span>
-            <span class="badge-pill">94.2% Peak Accuracy</span>
+            <span class="badge-pill">1,200 Records</span>
+            <span class="badge-pill">12 Metropolitan Hubs</span>
+            <span class="badge-pill">6 Supervised Classifiers</span>
+            <span class="badge-pill">94.2% Test Accuracy</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # KPI Metric Cards
+    # Key Empirical Metrics
     c1, c2, c3, c4 = st.columns(4)
     with c1:
         st.markdown("""
         <div class="metric-card">
             <div class="metric-title">Mean Annual Generation</div>
-            <div class="metric-val">89.37 <span style="font-size:1rem; font-weight:500; color:#94a3b8;">kt</span></div>
-            <div class="metric-delta delta-cyan">↑ 46.79 kt std dev across hubs</div>
+            <div class="metric-val">89.37 <span style="font-size:0.95rem; font-weight:500; color:#94a3b8;">kt</span></div>
+            <div class="metric-delta">Standard Deviation: 46.79 kt</div>
         </div>
         """, unsafe_allow_html=True)
     with c2:
         st.markdown("""
         <div class="metric-card">
-            <div class="metric-title">Mean Informal Recovery</div>
-            <div class="metric-val">63.93 <span style="font-size:1rem; font-weight:500; color:#94a3b8;">%</span></div>
-            <div class="metric-delta delta-rose">Surpasses Formal Rate (26.88%)</div>
+            <div class="metric-title">Informal Sector Recovery</div>
+            <div class="metric-val">63.93 <span style="font-size:0.95rem; font-weight:500; color:#94a3b8;">%</span></div>
+            <div class="metric-delta">Formal Collection Mean: 26.88%</div>
         </div>
         """, unsafe_allow_html=True)
     with c3:
         st.markdown("""
         <div class="metric-card">
             <div class="metric-title">Per-Capita Generation</div>
-            <div class="metric-val">8.66 <span style="font-size:1rem; font-weight:500; color:#94a3b8;">kg/yr</span></div>
-            <div class="metric-delta delta-amber">Max: 19.89 kg/person/yr</div>
+            <div class="metric-val">8.66 <span style="font-size:0.95rem; font-weight:500; color:#94a3b8;">kg/yr</span></div>
+            <div class="metric-delta">Observed Range: 2.43 - 19.89 kg</div>
         </div>
         """, unsafe_allow_html=True)
     with c4:
         st.markdown("""
         <div class="metric-card">
-            <div class="metric-title">Heavy Metal Toxicity</div>
-            <div class="metric-val">6.98 <span style="font-size:1rem; font-weight:500; color:#94a3b8;">/ 10</span></div>
-            <div class="metric-delta delta-rose">High Hazardous Chemical Load</div>
+            <div class="metric-title">Mean Toxicity Index</div>
+            <div class="metric-val">6.98 <span style="font-size:0.95rem; font-weight:500; color:#94a3b8;">/ 10</span></div>
+            <div class="metric-delta">Substantial Heavy Metal Content</div>
         </div>
         """, unsafe_allow_html=True)
     
     st.write("")
     st.write("")
     
-    # Interactive Map Section
-    st.markdown("### 🗺️ Global Geographic Distribution of Monitored Tech Hubs")
+    # Geographic Map Section
+    st.markdown("### Geographic Distribution of Monitored Technological Hubs")
     
-    # Aggregate data per hub
     hub_agg = df_clean.groupby('Tech_Hub').agg({
         'Annual_Generation_kt': 'mean',
         'Per_Capita_Generation_kg': 'mean',
@@ -381,19 +337,19 @@ if page == "🌐 Global Hubs & KPIs":
         },
         color_continuous_scale='Viridis',
         projection='natural earth',
-        title="Global Technological Hubs: Mean Annual E-Waste Generation & Vulnerability Score"
+        title="Global Technological Hubs: Annual Generation (Marker Size) and Continuous Vulnerability Score (Color)"
     )
     fig_map.update_geos(
-        showocean=True, oceancolor="#0b1120",
+        showocean=True, oceancolor="#0c111d",
         showland=True, landcolor="#1e293b",
-        showlakes=True, lakecolor="#0b1120",
+        showlakes=True, lakecolor="#0c111d",
         showcountries=True, countrycolor="#334155"
     )
     fig_map.update_layout(
         template="plotly_dark",
         margin=dict(l=0, r=0, t=40, b=0),
-        paper_bgcolor="#060913",
-        plot_bgcolor="#060913",
+        paper_bgcolor="#0b0f19",
+        plot_bgcolor="#0b0f19",
         height=500
     )
     st.plotly_chart(fig_map, use_container_width=True)
@@ -402,7 +358,7 @@ if page == "🌐 Global Hubs & KPIs":
     col_left, col_right = st.columns(2)
     
     with col_left:
-        st.markdown("#### ⚡ Mean Annual E-Waste Generation by Hub")
+        st.markdown("#### Mean Annual E-Waste Generation by Hub")
         sorted_gen = hub_agg.sort_values(by='Annual_Generation_kt', ascending=True)
         fig_gen = px.bar(
             sorted_gen,
@@ -411,7 +367,7 @@ if page == "🌐 Global Hubs & KPIs":
             orientation='h',
             color='Annual_Generation_kt',
             color_continuous_scale='Blues',
-            labels={'Annual_Generation_kt': 'Annual Generation (kt)', 'Tech_Hub': 'Tech Hub'}
+            labels={'Annual_Generation_kt': 'Mean Annual Generation (kt)', 'Tech_Hub': 'Technological Hub'}
         )
         fig_gen.update_layout(
             template="plotly_dark",
@@ -423,7 +379,7 @@ if page == "🌐 Global Hubs & KPIs":
         st.plotly_chart(fig_gen, use_container_width=True)
         
     with col_right:
-        st.markdown("#### ⚖️ Formal vs. Informal Processing Disparity")
+        st.markdown("#### Processing Route Disparity: Formal vs. Informal")
         fig_disp = go.Figure()
         fig_disp.add_trace(go.Bar(
             name='Formal Collection Rate (%)',
@@ -449,23 +405,23 @@ if page == "🌐 Global Hubs & KPIs":
         st.plotly_chart(fig_disp, use_container_width=True)
 
 # ---------------------------------------------------------
-# PAGE 2: INTERACTIVE DATA EXPLORER
+# PAGE 2: EMPIRICAL DATA EXPLORER
 # ---------------------------------------------------------
-elif page == "🔍 Interactive Data Explorer":
-    st.markdown("## 🔍 Interactive Data Explorer & Multidimensional Filtering")
-    st.markdown("Slice and filter 1,200 empirical observations across 12 developing tech hubs.")
+elif page == "Empirical Data Explorer":
+    st.markdown("## Empirical Data Explorer & Multidimensional Filtering")
+    st.markdown("Filter and inspect 1,200 empirical observations across 12 developing metropolitan technological hubs.")
     
     # Filter Row
     f1, f2, f3, f4 = st.columns(4)
     with f1:
         selected_hubs = st.multiselect(
-            "Select Tech Hub(s):",
+            "Select Technological Hubs:",
             options=sorted(df_clean['Tech_Hub'].unique()),
             default=sorted(df_clean['Tech_Hub'].unique())[:4]
         )
     with f2:
         selected_cats = st.multiselect(
-            "E-Waste Category:",
+            "E-Waste Stream Category:",
             options=sorted(df_clean['E_Waste_Category'].unique()),
             default=sorted(df_clean['E_Waste_Category'].unique())
         )
@@ -477,7 +433,7 @@ elif page == "🔍 Interactive Data Explorer":
         )
     with f4:
         year_min, year_max = int(df_clean['Year'].min()), int(df_clean['Year'].max())
-        selected_years = st.slider("Observation Year Range:", year_min, year_max, (year_min, year_max))
+        selected_years = st.slider("Observation Period:", year_min, year_max, (year_min, year_max))
         
     filtered_df = df_clean[
         (df_clean['Tech_Hub'].isin(selected_hubs if selected_hubs else df_clean['Tech_Hub'].unique())) &
@@ -486,15 +442,15 @@ elif page == "🔍 Interactive Data Explorer":
         (df_clean['Year'] >= selected_years[0]) & (df_clean['Year'] <= selected_years[1])
     ]
     
-    st.markdown(f"**Showing `{len(filtered_df):,}` matched records** out of 1,200 total records.")
+    st.markdown(f"**Showing {len(filtered_df):,} matched observations** out of 1,200 total records.")
     
     # Filtered Quick Metrics
     if len(filtered_df) > 0:
         m1, m2, m3, m4 = st.columns(4)
-        m1.metric("Filtered Records", len(filtered_df))
+        m1.metric("Selected Observations", len(filtered_df))
         m2.metric("Mean Generation", f"{filtered_df['Annual_Generation_kt'].mean():.2f} kt")
-        m3.metric("Avg Informal Share", f"{filtered_df['Informal_Recovery_Rate_Pct'].mean():.1f}%")
-        m4.metric("Avg Toxicity Index", f"{filtered_df['Heavy_Metal_Toxicity_Index'].mean():.2f}/10")
+        m3.metric("Mean Informal Share", f"{filtered_df['Informal_Recovery_Rate_Pct'].mean():.1f}%")
+        m4.metric("Mean Toxicity Index", f"{filtered_df['Heavy_Metal_Toxicity_Index'].mean():.2f} / 10")
         
         # Display DataFrame
         display_cols = [
@@ -507,15 +463,14 @@ elif page == "🔍 Interactive Data Explorer":
         # Download Button
         csv_data = filtered_df.to_csv(index=False).encode('utf-8')
         st.download_button(
-            label="📥 Download Filtered Data as CSV",
+            label="Download Filtered Subset (CSV)",
             data=csv_data,
-            file_name=f"ewaste_filtered_{selected_years[0]}_{selected_years[1]}.csv",
+            file_name=f"ewaste_empirical_subset_{selected_years[0]}_{selected_years[1]}.csv",
             mime="text/csv"
         )
         
         st.write("")
-        # Scatter Plot: Per Capita vs GDP
-        st.markdown("#### 📈 Per Capita E-Waste vs. Tech Sector GDP (Bubble Size = Annual Generation)")
+        st.markdown("#### Bivariate Distribution: Per-Capita E-Waste vs. Tech Sector GDP")
         fig_scatter = px.scatter(
             filtered_df,
             x='Tech_Sector_GDP_Billion_USD',
@@ -526,9 +481,13 @@ elif page == "🔍 Interactive Data Explorer":
             hover_data=['Country', 'Year', 'E_Waste_Category', 'Formal_Collection_Rate_Pct'],
             color_discrete_map={
                 'Tier-1 Controlled': '#10b981',
-                'Tier-2 Emerging Risk': '#38bdf8',
+                'Tier-2 Emerging Risk': '#3b82f6',
                 'Tier-3 High Vulnerability': '#f59e0b',
-                'Tier-4 Critical Crisis': '#f43f5e'
+                'Tier-4 Critical Crisis': '#ef4444'
+            },
+            labels={
+                'Tech_Sector_GDP_Billion_USD': 'Tech Sector GDP (Billion USD)',
+                'Per_Capita_Generation_kg': 'Per-Capita Generation (kg/year)'
             },
             template="plotly_dark"
         )
@@ -539,22 +498,21 @@ elif page == "🔍 Interactive Data Explorer":
         )
         st.plotly_chart(fig_scatter, use_container_width=True)
     else:
-        st.warning("No records match the selected filter criteria. Please broaden your selection.")
+        st.warning("No records match the selected filter criteria. Please broaden your selection parameters.")
 
 # ---------------------------------------------------------
-# PAGE 3: LIVE ML TIER PREDICTOR
+# PAGE 3: VULNERABILITY RISK CLASSIFIER
 # ---------------------------------------------------------
-elif page == "🧪 Live ML Tier Predictor":
-    st.markdown("## 🧪 Live Machine Learning Vulnerability Tier Predictor")
+elif page == "Vulnerability Risk Classifier":
+    st.markdown("## Vulnerability Risk Classification & Scenario Analysis Tool")
     st.markdown("""
-    Configure metropolitan e-waste indicators to generate real-time environmental management vulnerability classifications using our benchmarked ML models.
+    Evaluate municipal operational indicators to generate real-time environmental management vulnerability classifications using our benchmarked models.
     """)
     
     if bundle is None or len(models) == 0:
-        st.error("Model artifacts bundle not found in `outputs/models/`. Please execute `python scripts/run_pipeline.py` first.")
+        st.error("Model artifacts bundle not found in outputs/models/. Please execute python scripts/run_pipeline.py first.")
     else:
-        # Preset Quick-Load Buttons
-        st.markdown("##### ⚡ Quick-Load Hub Preset Profiles:")
+        st.markdown("##### Load Standard Hub Profile Preset:")
         pre_col1, pre_col2, pre_col3, pre_col4, pre_col5 = st.columns(5)
         
         presets = {
@@ -569,19 +527,19 @@ elif page == "🧪 Live ML Tier Predictor":
             st.session_state.selected_preset = presets["Bengaluru"]
             
         with pre_col1:
-            if st.button("🏙️ Bengaluru", use_container_width=True):
+            if st.button("Bengaluru, India", use_container_width=True):
                 st.session_state.selected_preset = presets["Bengaluru"]
         with pre_col2:
-            if st.button("🏭 Shenzhen", use_container_width=True):
+            if st.button("Shenzhen, China", use_container_width=True):
                 st.session_state.selected_preset = presets["Shenzhen"]
         with pre_col3:
-            if st.button("🌍 Lagos", use_container_width=True):
+            if st.button("Lagos, Nigeria", use_container_width=True):
                 st.session_state.selected_preset = presets["Lagos"]
         with pre_col4:
-            if st.button("🌴 São Paulo", use_container_width=True):
+            if st.button("São Paulo, Brazil", use_container_width=True):
                 st.session_state.selected_preset = presets["São Paulo"]
         with pre_col5:
-            if st.button("💻 Cyberjaya", use_container_width=True):
+            if st.button("Cyberjaya, Malaysia", use_container_width=True):
                 st.session_state.selected_preset = presets["Cyberjaya"]
                 
         preset = st.session_state.selected_preset
@@ -589,7 +547,7 @@ elif page == "🧪 Live ML Tier Predictor":
         st.markdown("---")
         
         # Input Form
-        with st.form("prediction_form"):
+        with st.form("classification_form"):
             r1_1, r1_2, r1_3 = st.columns(3)
             with r1_1:
                 hub_val = st.selectbox("Technological Hub:", options=sorted(HUB_COORDINATES.keys()), index=sorted(HUB_COORDINATES.keys()).index(preset['hub']) if preset['hub'] in sorted(HUB_COORDINATES.keys()) else 0)
@@ -604,36 +562,36 @@ elif page == "🧪 Live ML Tier Predictor":
                     'Temperature Exchange & Cooling'
                 ])
             with r1_3:
-                model_choice = st.selectbox("Predictive Classification Algorithm:", options=list(models.keys()))
+                model_choice = st.selectbox("Classification Architecture:", options=list(models.keys()))
                 
-            st.markdown("##### 📊 Operational & Demographic Quantities")
+            st.markdown("##### Quantitative Demographic & Operational Inputs")
             r2_1, r2_2, r2_3, r2_4 = st.columns(4)
             with r2_1:
                 ann_gen = st.number_input("Annual Generation (kt):", 1.0, 500.0, float(preset['gen']), step=1.0)
-                per_cap = st.number_input("Per-Capita Gen (kg/yr):", 0.5, 30.0, float(preset['per_cap']), step=0.1)
+                per_cap = st.number_input("Per-Capita (kg/person/yr):", 0.5, 30.0, float(preset['per_cap']), step=0.1)
             with r2_2:
-                pop_mil = st.number_input("Population (Millions):", 0.5, 40.0, float(preset['pop']), step=0.1)
-                gdp_bil = st.number_input("Tech Sector GDP ($ Billion):", 5.0, 1500.0, float(preset['gdp']), step=5.0)
+                pop_mil = st.number_input("Metropolitan Population (Millions):", 0.5, 40.0, float(preset['pop']), step=0.1)
+                gdp_bil = st.number_input("Tech Sector GDP (Billion USD):", 5.0, 1500.0, float(preset['gdp']), step=5.0)
             with r2_3:
                 workforce_k = st.number_input("Tech Workforce (Thousands):", 10.0, 5000.0, float(preset['wf']), step=10.0)
-                lifespan_m = st.number_input("Average Lifespan (Months):", 6.0, 96.0, float(preset['life']), step=1.0)
+                lifespan_m = st.number_input("Mean Device Lifespan (Months):", 6.0, 96.0, float(preset['life']), step=1.0)
             with r2_4:
                 formal_rate = st.slider("Formal Collection Rate (%):", 0.0, 100.0, float(preset['form']))
                 informal_rate = st.slider("Informal Recovery Rate (%):", 0.0, 100.0, float(preset['inf']))
                 
             r3_1, r3_2, r3_3 = st.columns(3)
             with r3_1:
-                toxicity_idx = st.slider("Heavy Metal Toxicity (1-10):", 1.0, 10.0, float(preset['tox']), step=0.1)
+                toxicity_idx = st.slider("Heavy Metal Toxicity Score (1.0 - 10.0):", 1.0, 10.0, float(preset['tox']), step=0.1)
             with r3_2:
-                compliance_val = st.selectbox("Landfill Diversion Compliance:", options=[
+                compliance_val = st.selectbox("Landfill Diversion Compliance Level:", options=[
                     'Non-Compliant', 'Minimal Compliance', 'Substantial Compliance', 'Certified Compliance'
                 ], index=1 if preset['comp'] == 'Minimal Compliance' else (0 if preset['comp'] == 'Non-Compliant' else 2))
             with r3_3:
-                epr_score = st.slider("EPR Enforcement Score (1.0-5.0):", 1.0, 5.0, float(preset['epr']), step=0.1)
+                epr_score = st.slider("EPR Enforcement Score (1.0 - 5.0):", 1.0, 5.0, float(preset['epr']), step=0.1)
                 
-            stream_desc = st.text_input("Qualitative Stream Description (for NLP TF-IDF extraction):", value=preset['desc'])
+            stream_desc = st.text_input("Qualitative Stream Description (for NLP Keyword Extraction & Vectorization):", value=preset['desc'])
             
-            submit_btn = st.form_submit_button("🚀 Compute Vulnerability Classification", use_container_width=True)
+            submit_btn = st.form_submit_button("Execute Classification", use_container_width=True)
             
         if submit_btn:
             selected_model = models[model_choice]
@@ -650,7 +608,7 @@ elif page == "🧪 Live ML Tier Predictor":
             sec_kw = sum(text_lower.count(k) for k in keywords)
             tfidf_vec = bundle['tfidf'].transform([stream_desc]).toarray()[0]
             
-            # Domain features
+            # Domain feature engineering
             obs_vel = 12.0 / lifespan_m
             formal_inf_ratio = formal_rate / (informal_rate + 1.0)
             inf_burden = informal_rate / (formal_rate + informal_rate + 1e-5)
@@ -658,7 +616,7 @@ elif page == "🧪 Live ML Tier Predictor":
             toxic_load = ann_gen * toxicity_idx / 10.0
             rec_precious = (ann_gen * 1000.0 * 3000.0) / 1e6
             
-            # Encoding
+            # Categorical encoding
             raw_hub_str = 'So Paulo' if (hub_val == 'São Paulo' and 'So Paulo' in bundle['cat_encoders']['Tech_Hub'].classes_) else hub_val
             hub_enc = bundle['cat_encoders']['Tech_Hub'].transform([raw_hub_str])[0]
             country_enc = bundle['cat_encoders']['Country'].transform([country_val])[0]
@@ -704,46 +662,60 @@ elif page == "🧪 Live ML Tier Predictor":
             pred_idx = selected_model.predict(scaled_row)[0]
             pred_class = bundle['classes'][pred_idx]
             
-            # Predict Proba
             probs = selected_model.predict_proba(scaled_row)[0] if hasattr(selected_model, 'predict_proba') else None
             
-            # Render Results
-            st.markdown("### 🎯 Classification Result")
+            # Display Result
+            st.markdown("### Classification Outcome")
             tier_class_map = {
-                'Tier-1 Controlled': ('tier-1', '🟢 Controlled / Low Environmental Vulnerability', 'Effective EPR frameworks and high formal processing capacity prevent uncontrolled municipal leakage.'),
-                'Tier-2 Emerging Risk': ('tier-2', '🔵 Emerging Risk / Moderate Vulnerability', 'Growing consumer refresh velocity requires capacity upgrades before informal processing overwhelms formal capacity.'),
-                'Tier-3 High Vulnerability': ('tier-3', '🟠 High Vulnerability / Severe Informal Leakage', 'Informal crude recovery dominates (>60%), causing significant hazardous heavy metal exposure in urban scrap clusters.'),
-                'Tier-4 Critical Crisis': ('tier-4', '🔴 Critical Crisis / Severe Ecological Hazard', 'Extreme toxic burden, minimal formal collection, and zero landfill diversion compliance create an imminent environmental and occupational emergency.')
+                'Tier-1 Controlled': (
+                    'tier-1',
+                    'Tier-1: Controlled (Low Environmental Vulnerability)',
+                    'Formal recycling infrastructure and robust EPR frameworks successfully capture municipal electronics streams with negligible uncontrolled informal leakage.'
+                ),
+                'Tier-2 Emerging Risk': (
+                    'tier-2',
+                    'Tier-2: Emerging Risk (Moderate Vulnerability)',
+                    'Rapid hardware refresh cycles and growing consumer volumes threaten to exceed formal processing capacity if municipal collection programs are not expanded.'
+                ),
+                'Tier-3 High Vulnerability': (
+                    'tier-3',
+                    'Tier-3: High Vulnerability (Significant Informal Sector Exposure)',
+                    'Informal scrap recovery operations handle over 60% of municipal streams, causing substantial hazardous heavy metal release in urban dismantling clusters.'
+                ),
+                'Tier-4 Critical Crisis': (
+                    'tier-4',
+                    'Tier-4: Critical Crisis (Severe Ecological and Chemical Hazard)',
+                    'Extreme toxic burden, minimal formal collection, and complete absence of landfill compliance represent an immediate public health and environmental crisis.'
+                )
             }
             css_class, title_text, desc_text = tier_class_map.get(pred_class, ('tier-2', pred_class, ''))
             
             st.markdown(f"""
             <div class="tier-box {css_class}">
-                <div style="font-size:1.4rem; font-weight:800; margin-bottom:6px;">{title_text}</div>
-                <div style="font-size:0.95rem; opacity:0.95;">{desc_text}</div>
+                <div style="font-size:1.25rem; font-weight:700; margin-bottom:6px;">{title_text}</div>
+                <div style="font-size:0.92rem; line-height:1.5;">{desc_text}</div>
             </div>
             """, unsafe_allow_html=True)
             
-            # Probabilities bar chart
             if probs is not None:
                 prob_df = pd.DataFrame({
-                    'Risk Tier': bundle['classes'],
-                    'Confidence / Probability (%)': (probs * 100).round(2)
+                    'Management Risk Tier': bundle['classes'],
+                    'Posterior Probability (%)': (probs * 100).round(2)
                 })
                 fig_prob = px.bar(
                     prob_df,
-                    x='Risk Tier',
-                    y='Confidence / Probability (%)',
-                    color='Risk Tier',
+                    x='Management Risk Tier',
+                    y='Posterior Probability (%)',
+                    color='Management Risk Tier',
                     color_discrete_map={
                         'Tier-1 Controlled': '#10b981',
-                        'Tier-2 Emerging Risk': '#38bdf8',
+                        'Tier-2 Emerging Risk': '#3b82f6',
                         'Tier-3 High Vulnerability': '#f59e0b',
-                        'Tier-4 Critical Crisis': '#f43f5e'
+                        'Tier-4 Critical Crisis': '#ef4444'
                     },
                     text_auto='.1f',
                     template="plotly_dark",
-                    title="Model Posterior Probability Distribution across Risk Tiers"
+                    title="Model Posterior Probability Distribution Across Target Classes"
                 )
                 fig_prob.update_layout(
                     paper_bgcolor="rgba(0,0,0,0)",
@@ -754,30 +726,28 @@ elif page == "🧪 Live ML Tier Predictor":
                 st.plotly_chart(fig_prob, use_container_width=True)
 
 # ---------------------------------------------------------
-# PAGE 4: MODEL BENCHMARK LAB
+# PAGE 4: MODEL PERFORMANCE BENCHMARKS
 # ---------------------------------------------------------
-elif page == "📊 Model Benchmark Lab":
-    st.markdown("## 📊 Machine Learning Model Benchmark & Evaluation Lab")
-    st.markdown("Comparative performance of six classification architectures on the 80:20 stratified holdout split (240 test instances).")
+elif page == "Model Performance Benchmarks":
+    st.markdown("## Supervised Learning Classification Benchmarks")
+    st.markdown("Empirical comparison of six classification models evaluated on the 80:20 stratified holdout split (240 test instances).")
     
-    # Model comparison table
     comp_path = 'outputs/tables/model_comparison.csv'
     if os.path.exists(comp_path):
         comp_df = pd.read_csv(comp_path)
         
         c1, c2 = st.columns([1.2, 1])
         with c1:
-            st.markdown("#### 🏆 Benchmark Performance Summary")
+            st.markdown("#### Test Set Performance Summary")
             st.dataframe(comp_df, use_container_width=True, hide_index=True)
             
-            st.info("""
-            **Key Academic Finding:**  
-            * **Logistic Regression achieved the highest accuracy (94.2%)**, indicating a linearly separable multi-class boundary when leveraging scaled continuous indices and NLP TF-IDF features.
-            * **XGBoost (81.7%)** and **Random Forest (79.2%)** exhibited superior robustness to non-linear regional interactions and feature skewness.
+            st.markdown("""
+            **Empirical Findings:**
+            * **Logistic Regression achieved 94.2% test accuracy**, demonstrating that composite environmental vulnerability tiers are highly separable along standardized continuous indicators and NLP keyword distributions.
+            * **Tree ensembles (XGBoost 81.7%, Random Forest 79.2%)** demonstrated balanced recall across minority and majority risk tiers.
             """)
         
         with c2:
-            # Bar chart of accuracy
             comp_df['Acc_Numeric'] = comp_df['Accuracy'].str.rstrip('%').astype(float)
             fig_acc = px.bar(
                 comp_df.sort_values(by='Acc_Numeric', ascending=True),
@@ -785,7 +755,7 @@ elif page == "📊 Model Benchmark Lab":
                 y='Model',
                 orientation='h',
                 color='Acc_Numeric',
-                color_continuous_scale='Teal',
+                color_continuous_scale='Blues',
                 text='Accuracy',
                 labels={'Acc_Numeric': 'Test Accuracy (%)', 'Model': 'Model Architecture'},
                 title="Comparative Accuracy across 6 Classifiers"
@@ -806,9 +776,9 @@ elif page == "📊 Model Benchmark Lab":
             cm_dict = json.load(f)
             
         st.markdown("---")
-        st.markdown("#### 🔍 Interactive Confusion Matrix Explorer")
+        st.markdown("#### Confusion Matrix Diagnostic Tool")
         
-        selected_cm_model = st.selectbox("Select Model to Inspect Confusion Matrix:", list(cm_dict.keys()), index=0)
+        selected_cm_model = st.selectbox("Select Model Architecture to Inspect:", list(cm_dict.keys()), index=0)
         cm_matrix = np.array(cm_dict[selected_cm_model])
         tier_labels = ['Tier-1 Controlled', 'Tier-2 Emerging Risk', 'Tier-3 High Vulnerability', 'Tier-4 Critical Crisis']
         
@@ -829,24 +799,24 @@ elif page == "📊 Model Benchmark Lab":
         st.plotly_chart(fig_cm, use_container_width=True)
 
 # ---------------------------------------------------------
-# PAGE 5: PUBLICATION FIGURES GALLERY
+# PAGE 5: RESEARCH PUBLICATION FIGURES
 # ---------------------------------------------------------
-elif page == "🖼️ Publication Figures Gallery":
-    st.markdown("## 🖼️ Academic Publication Figures Gallery")
-    st.markdown("High-resolution (300 DPI) publication-grade figures generated by the end-to-end research pipeline.")
+elif page == "Research Publication Figures":
+    st.markdown("## Academic Publication Figures Gallery")
+    st.markdown("Publication-quality (300 DPI) figures generated during empirical data processing and hypothesis testing.")
     
     figures_dir = 'outputs/figures'
     if os.path.exists(figures_dir):
         all_figures = sorted([f for f in os.listdir(figures_dir) if f.endswith('.png')])
         
         category_filter = st.selectbox(
-            "Filter Figures by Research Chapter:",
+            "Filter Figures by Study Phase:",
             options=[
                 "All Figures (22)",
                 "Chapter 3: Methodology & Workflow Architecture",
                 "Chapter 4: Exploratory Data Analysis & Trends",
                 "Chapter 6: Machine Learning Evaluation",
-                "Appendix B: Confusion Matrices & Feature Importance"
+                "Appendix B: Diagnostic Confusion Matrices & Feature Importances"
             ]
         )
         
@@ -862,65 +832,64 @@ elif page == "🖼️ Publication Figures Gallery":
             
         st.markdown(f"Displaying **{len(filtered_figures)}** figures:")
         
-        # Grid display (2 columns)
         g1, g2 = st.columns(2)
         for i, fig_name in enumerate(filtered_figures):
             fig_path = os.path.join(figures_dir, fig_name)
             target_col = g1 if i % 2 == 0 else g2
             with target_col:
                 clean_title = fig_name.replace('.png', '').replace('_', ' ').title()
-                st.markdown(f"##### 📌 {clean_title}")
+                st.markdown(f"##### {clean_title}")
                 st.image(fig_path, use_container_width=True)
-                st.caption(f"File: `{fig_name}` (300 DPI)")
+                st.caption(f"Filename: {fig_name} (300 DPI)")
                 st.write("")
 
 # ---------------------------------------------------------
-# PAGE 6: RESEARCH REPORT & EXPORTS
+# PAGE 6: DOCUMENTATION & DATASETS
 # ---------------------------------------------------------
-elif page == "📑 Research Report & Exports":
-    st.markdown("## 📑 Research Documentation & Academic Exports")
-    st.markdown("Access and download official compiled project reports and serialized datasets.")
+elif page == "Documentation & Datasets":
+    st.markdown("## Research Documentation & Project Artifacts")
+    st.markdown("Access compiled research documentation, formal project reports, and serialized datasets.")
     
     col_rep1, col_rep2 = st.columns(2)
     
     with col_rep1:
-        st.markdown("### 📄 Compiled Academic Documents")
+        st.markdown("### Academic Reports & Papers")
         
         pdf_path = 'E_Waste_Data_Science_Project_Report.pdf'
         if os.path.exists(pdf_path):
             with open(pdf_path, 'rb') as f:
                 pdf_bytes = f.read()
             st.download_button(
-                label="📥 Download Full PDF Project Report (10 Chapters)",
+                label="Download Full Project Report (PDF, 10 Chapters)",
                 data=pdf_bytes,
                 file_name="E_Waste_Data_Science_Project_Report.pdf",
                 mime="application/pdf",
                 use_container_width=True
             )
-            st.caption(f"Size: {len(pdf_bytes) / (1024*1024):.2f} MB | Standard University IEEE/Academic Formatting")
+            st.caption(f"Document Size: {len(pdf_bytes) / (1024*1024):.2f} MB")
             
         docx_path = 'E_Waste_Data_Science_Project_Report.docx'
         if os.path.exists(docx_path):
             with open(docx_path, 'rb') as f:
                 docx_bytes = f.read()
             st.download_button(
-                label="📥 Download Microsoft Word Report (.docx)",
+                label="Download Project Report (Microsoft Word .docx)",
                 data=docx_bytes,
                 file_name="E_Waste_Data_Science_Project_Report.docx",
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 use_container_width=True
             )
-            st.caption(f"Size: {len(docx_bytes) / (1024*1024):.2f} MB")
+            st.caption(f"Document Size: {len(docx_bytes) / (1024*1024):.2f} MB")
             
     with col_rep2:
-        st.markdown("### 🗄️ Processed Datasets & Feature Matrices")
+        st.markdown("### Empirical Datasets")
         
         clean_csv = 'data/processed/cleaned_ewaste_dataset.csv'
         if os.path.exists(clean_csv):
             with open(clean_csv, 'rb') as f:
                 c_bytes = f.read()
             st.download_button(
-                label="📥 Download Cleaned Empirical Dataset (1,200 rows)",
+                label="Download Cleaned Empirical Dataset (CSV, 1,200 rows)",
                 data=c_bytes,
                 file_name="cleaned_ewaste_dataset.csv",
                 mime="text/csv",
@@ -932,7 +901,7 @@ elif page == "📑 Research Report & Exports":
             with open(feat_csv, 'rb') as f:
                 f_bytes = f.read()
             st.download_button(
-                label="📥 Download Engineered Feature Matrix (45 columns)",
+                label="Download Engineered Feature Matrix (CSV, 45 columns)",
                 data=f_bytes,
                 file_name="engineered_ewaste_features.csv",
                 mime="text/csv",
@@ -940,9 +909,9 @@ elif page == "📑 Research Report & Exports":
             )
 
     st.markdown("---")
-    st.markdown("### 📖 Executive Summary & Policy Recommendations")
+    st.markdown("### Executive Summary of Empirical Findings")
     st.markdown("""
-    1. **Surging Informal Dominance:** Across all 12 monitored technology hubs, the informal scrap sector recovers an average of **63.93%** of annual e-waste streams, exceeding formal municipal capacity (**26.88%**).
-    2. **High Heavy Metal Toxicity Index:** The regional toxicity mean reaches **6.98 / 10**, driven by open-air burning and acid-bath leaching of flame-retardant circuit boards and cooling compressors.
-    3. **Predictive Tier Classification:** Using an 80:20 stratified holdout split, **Logistic Regression achieved 94.2% accuracy**, providing a deployable decision-support tool for municipal policymakers to preempt ecological crises in tier 3 & 4 hubs.
+    1. **Dominance of Informal Processing Pathways:** Across all 12 monitored metropolitan hubs, the informal scrap sector processes an average of **63.93%** of annual e-waste, substantially surpassing municipal formal capacity (**26.88%**).
+    2. **Hazardous Contamination Risk:** The regional heavy metal toxicity index averages **6.98 / 10**, driven by unmonitored dismantling, acid leaching, and open burning in metropolitan scrap markets.
+    3. **Supervised Classification Performance:** Evaluating six distinct predictive architectures on an 80:20 stratified holdout partition, **Logistic Regression achieved the highest accuracy (94.2%)**, establishing an operational decision-support tool for municipal vulnerability assessment.
     """)
